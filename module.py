@@ -257,7 +257,7 @@ class BertForMultiTaskHSD(BertPreTrainedModel):
                 if self.num_labels == 3:
                     is_hateful = (labels != 1).float().unsqueeze(1)  # [batch_size, 1]
                 else:
-                    is_hateful = labels.float().unsqueeze(1)  # [batch_size, 1]
+                    is_hateful = (labels == 1).float().unsqueeze(1)  # [batch_size, 1]
                 
                 # Apply mask to loss
                 masked_target_loss = (target_loss * is_hateful).mean()

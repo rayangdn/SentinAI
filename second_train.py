@@ -513,7 +513,7 @@ if __name__ == '__main__':
     
     # Set random seed for reproducibility
     from utils import set_seed
-    set_seed(42)
+    set_seed(40)
     
     ##### ADDED PARTS ####
 

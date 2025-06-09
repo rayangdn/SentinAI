@@ -18,7 +18,7 @@ class TestLime():
         self.args = args
         tokenizer = BertTokenizer.from_pretrained(args.pretrained_model)
         
-            #### ADDED PARTS ####
+        #### ADDED PARTS ####
         
         # Load appropriate model
         if args.multitask:
@@ -31,10 +31,11 @@ class TestLime():
             num_target_groups = len(temp_dataset.target_groups)
             model = BertForMultiTaskHSD.from_pretrained(args.model_path, num_labels=args.num_labels, num_target_groups=num_target_groups)
         else:
-            model = BertForSequenceClassification.from_pretrained(args.model_path, num_labels=args.num_labels)
+            model = BertForSequenceClassification.from_pretrained(args.model_path, num_labels=args.num_labels, local_files_only=True)
         
-    #### END OF ADDED PARTS ####
-        model = BertForSequenceClassification.from_pretrained(args.model_path, num_labels=args.num_labels, local_files_only=True)
+        #### END OF ADDED PARTS ####
+        
+        # model = BertForSequenceClassification.from_pretrained(args.model_path, num_labels=args.num_labels, local_files_only=True)
         tokenizer = add_tokens_to_tokenizer(args, tokenizer)
         
         self.tokenizer = tokenizer
@@ -58,7 +59,12 @@ class TestLime():
                 in_tensor = in_tensor.to(self.args.device)
                 
                 out_tensor = self.model(**in_tensor)  # [batch_size * sequence_length, num_labels]
-                logits = out_tensor.logits
+                
+                #### ADDED PARTS ####
+                if self.args.multitask:
+                    logits = out_tensor['logits']
+                else:
+                    logits = out_tensor.logits
 
                 probs = F.softmax(logits, dim=1)
                 probs = probs.squeeze(0)

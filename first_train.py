@@ -62,7 +62,6 @@ def get_args_1():
     args = parser.parse_args()
     return args   
 
-
 def get_prob_acc(args, gts_tensor, ori_gts, out_logits):
     batch_pred_probs = []
     batch_gt_probs = []
@@ -451,7 +450,7 @@ if __name__ == '__main__':
     
     # Set random seed for reproducibility
     from utils import set_seed
-    set_seed(42)
+    set_seed(40)
     
     ##### END OF ADDED PARTS ####
 

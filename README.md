@@ -41,7 +41,7 @@ make docker-exec
 ```
 
 ## Models
-If you would like to run the models, you can finde them and download them in this Google drive [link](https://drive.google.com/drive/u/1/folders/1vAkw4C90RV8_fSjDZRCvOLHtRD4-zHtj). This contains two folders:
+If you would like to run the models, you can find them and download them in this Google drive [link](https://drive.google.com/drive/u/1/folders/1vAkw4C90RV8_fSjDZRCvOLHtRD4-zHtj). This contains two folders:
 - **finetune_1st**: includes the checkpoints of the pre-finetuned models. Each of names shows what's the pre-finetuning method and some infos of the hyperparameters.
 ```
 📁finetune_1st
